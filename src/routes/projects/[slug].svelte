@@ -58,6 +58,7 @@
   const skills = data.skills;
   const intro = data.intro;
   const lighthouseScores = data.lighthouseScores;
+  const imgUrl = new URL(`/src/images/${slug}-screenshot.jpg`, import.meta.url).href
 
   let showModal = false;
 
@@ -80,7 +81,7 @@
       <div class="overview">
         <div class="screenshot-container">
           <button class="screenshot" on:click={handleToggleModal} aria-label={`View screenshot for ${title}`}>
-            <img src={`/src/images/${slug}-screenshot.jpg`} alt="" />
+            <img src={imgUrl} alt="" />
           </button>
 
           <div class="links">
