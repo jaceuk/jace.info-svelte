@@ -36,9 +36,7 @@
             </h2>
 
             {#if tags}
-              <div class="tags">
-                <PostTags {tags} />
-              </div>
+              <PostTags {tags} />
             {/if}
           </div>
         </div>
@@ -58,11 +56,6 @@
 </Transition>
 
 <style lang="scss">
-  .tags {
-    font-size: var(--font-size-small);
-    text-transform: uppercase;
-  }
-
   .link {
     margin: auto var(--size-medium) 0 auto;
   }
