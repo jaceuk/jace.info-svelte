@@ -1,4 +1,4 @@
-<script lang="ts">
+<script type="ts">
   import Overlay from '@components/Overlay.svelte';
   import Loader from '@components/Loader.svelte';
   import Alert from '@components/Alert.svelte';
@@ -7,17 +7,55 @@
   import PageHeader from '@components/PageHeader.svelte';
   import Transition from '@components/Transition.svelte';
 
+  interface IOutcome {
+    status: number;
+    message: string;
+  }
+
   let name: string;
   let email: string;
   let message: string;
 
   let processing = false;
-  let response;
-  let outcome = { status: 0, message: '' };
+  let response: IOutcome;
+  let outcome: IOutcome = { status: 0, message: '' };
+
+  async function checkRecaptcha(token: string) {
+    const response = await fetch('/api/verify', {
+      method: 'POST',
+      body: JSON.stringify({
+        name,
+        email,
+        message,
+        gRecaptchaToken: token,
+      }),
+    }).catch((error) => {
+      console.log(error);
+    });
+
+    return response;
+  }
 
   async function handleSubmit() {
     processing = true;
 
+    window.grecaptcha.ready(() => {
+      window.grecaptcha
+        .execute(import.meta.env.VITE_RECAPTCHA_SITE_KEY, { action: 'contactSubmit' })
+        .then(async (token: string) => {
+          const response = await checkRecaptcha(token);
+          if (response && response.status === 200) {
+            await sendEmail();
+          } else {
+            outcome.status = 400;
+            outcome.message = 'ReCaptcha verification failed.';
+          }
+          processing = false;
+        });
+    });
+  }
+
+  async function sendEmail() {
     try {
       const submit = await fetch('/api/contact', {
         method: 'POST',
@@ -33,6 +71,7 @@
 
       response = await submit.json();
       outcome = response;
+      console.log(outcome.message);
 
       name = '';
       email = '';
@@ -40,10 +79,8 @@
     } catch (error) {
       outcome.status = 500;
       outcome.message = 'Server failed to respond.';
-      console.log(error)
+      console.log(error);
     }
-
-    processing = false;
   }
 </script>
 
