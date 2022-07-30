@@ -36,8 +36,12 @@ body,
 .body {
   font-family: 'Nunito', sans-serif;
   font-size: var(--font-size-body);
-  font-weight: var(--font-weight-regular);
+  font-weight: var(--font-weight-light);
   line-height: 1.5;
+
+  html[data-theme='light'] & {
+    font-weight: var(--font-weight-regular);
+  }
 }
 
 h1,
