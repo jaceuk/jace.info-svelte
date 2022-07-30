@@ -117,7 +117,7 @@
 </PagePanel>
 
 {#if showModal}
-  <Modal image={`${slug}-screenshot.jpg`} on:close={handleToggleModal} />
+  <Modal {imgUrl} on:close={handleToggleModal} />
 {/if}
 
 <style lang="scss">

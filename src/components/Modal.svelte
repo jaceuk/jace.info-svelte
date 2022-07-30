@@ -6,7 +6,7 @@
   import Button from '@components/Button.svelte';
   import Transition from '@components/Transition.svelte';
 
-  export let image: string;
+  export let imgUrl: string;
 
   const dispatch = createEventDispatcher();
 
@@ -24,7 +24,7 @@
         </Button>
       </div>
 
-      <img class="image" src="/src/images/{image}" alt="" />
+      <img class="image" src={imgUrl} alt="" />
     </div>
   </Transition>
 </Overlay>
