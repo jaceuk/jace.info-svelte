@@ -5,6 +5,7 @@ html {
 a {
   color: var(--color-text);
   text-decoration: none;
+  transition: var(--transition-fast);
 }
 
 body {

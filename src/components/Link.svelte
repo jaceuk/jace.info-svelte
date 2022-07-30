@@ -11,7 +11,6 @@
   a {
     font-weight: var(--font-weight-bold);
     cursor: pointer;
-    transition: var(--transition-fast);
     display: flex;
     align-items: center;
     gap: var(--size-small);

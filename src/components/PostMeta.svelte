@@ -1,5 +1,6 @@
 <script lang="ts">
   import { formatForURL } from '@lib/utils/tags';
+  import PostTags from '@components/PostTags.svelte';
 
   export let date: string;
   export let tags: string[];
@@ -16,15 +17,7 @@
 <div class="post-meta">
   {formatDate(date)}
   {#if tags}
-    in
-    {#each tags.sort() as tag, i}
-      <a href={`/tag/${formatForURL(tag)}`} aria-label={`View posts tagged with ${tag}`}>
-        {tag}
-      </a>
-      {#if i < tags.length - 1}
-        <span>, </span>
-      {/if}
-    {/each}
+    in <PostTags {tags} />
   {/if}
 </div>
 
@@ -33,9 +26,5 @@
     font-weight: var(--font-weight-light);
     color: var(--color-accent);
     padding-top: var(--size-base);
-  }
-  a {
-    color: var(--color-accent);
-    text-decoration: underline;
   }
 </style>

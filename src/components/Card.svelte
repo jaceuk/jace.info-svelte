@@ -1,7 +1,7 @@
 <script lang="ts">
   import ArrowRight from '@components/svgs/ArrowRight.svelte';
   import Link from '@components/Link.svelte';
-  import PostMeta from '@components/PostMeta.svelte';
+  import PostTags from '@components/PostTags.svelte';
   import Transition from '@components/Transition.svelte';
 
   export let date = '';
@@ -30,16 +30,21 @@
             {#if type}
               <div class="type">{type}</div>
             {/if}
+
             <h2 class="white-text">
               <a href={`/${type ? 'projects' : 'blog'}/${slug}`}>{title}</a>
             </h2>
+
+            {#if tags}
+              <div class="tags">
+                <PostTags {tags} />
+              </div>
+            {/if}
           </div>
         </div>
 
         <div class="text">
-          {#if date}
-            <PostMeta {date} {tags} />
-          {/if}{intro}
+          {intro}
         </div>
 
         <div class="link">
@@ -53,6 +58,11 @@
 </Transition>
 
 <style lang="scss">
+  .tags {
+    font-size: var(--font-size-small);
+    text-transform: uppercase;
+  }
+
   .link {
     margin: auto var(--size-medium) 0 auto;
   }
@@ -85,6 +95,9 @@
     border-left: var(--size-extra-small) solid var(--color-accent);
     padding-left: calc(var(--size-medium) - var(--size-extra-small));
     padding-right: var(--size-medium);
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-base);
 
     @media (max-width: 900px) {
       padding-left: calc(var(--size-medium) - var(--size-extra-small));
