@@ -1,0 +1,152 @@
+html {
+  scroll-behavior: smooth;
+}
+
+a {
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+body {
+  overflow-x: hidden;
+  background: var(--color-background) url(../images/stars.png) repeat 50% top;
+  background-size: contain;
+  padding: var(--size-medium);
+  transition: background 0.2s;
+
+  &.no-scroll {
+    overflow: hidden;
+  }
+
+  @media (max-width: 900px) {
+    padding: 0;
+  }
+}
+
+button {
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.wrapper {
+  max-width: var(--size-max-width);
+  width: 100%;
+  margin: auto;
+  display: grid;
+  gap: var(--size-medium);
+  position: relative;
+}
+
+.panel {
+  background: linear-gradient(135deg, var(--color-panel-light) 0%, var(--color-panel-dark) 100%);
+  border-radius: var(--border-radius-medium);
+  box-shadow: inset 0px 0px 0px var(--size-extra-small) var(--color-panel-light);
+  position: relative;
+  overflow: hidden;
+
+  @media (max-width: 900px) {
+    border-radius: 0;
+  }
+
+  [data-theme='light'] & {
+    background: linear-gradient(135deg, var(--color-panel-light) 0%, var(--color-panel-dark) 75%);
+  }
+}
+
+.content {
+  z-index: 20;
+  position: relative;
+}
+
+.moon {
+  filter: grayscale(1);
+  position: absolute;
+  z-index: 10;
+  width: 520px;
+  min-width: 520px;
+  right: -56px;
+
+  @media (max-width: 900px) {
+    right: -346px;
+  }
+
+  [data-theme='light'] & {
+    filter: grayscale(1) invert(1);
+    opacity: 0.6;
+  }
+}
+
+.rocket {
+  filter: grayscale(1);
+  position: absolute;
+  bottom: 350px;
+  right: 156px;
+  z-index: 10;
+
+  @media (max-width: 900px) {
+    right: -64px;
+    bottom: 310px;
+  }
+
+  [data-theme='light'] & {
+    filter: grayscale(1) brightness(1.25);
+  }
+}
+
+.orange-text {
+  color: var(--color-accent);
+}
+
+.white-text {
+  color: var(--color-text);
+}
+
+.accessible-text {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+blockquote {
+  background: var(--color-dark-grey);
+  padding: var(--size-medium);
+  border-left: var(--size-extra-small) solid var(--color-accent);
+  font-style: italic;
+}
+
+blockquote:before {
+  color: var(--color-accent);
+  content: open-quote;
+  font-size: 4em;
+  line-height: 0.1em;
+  margin-right: 0.25em;
+  vertical-align: -0.4em;
+}
+
+blockquote p {
+  display: inline;
+}
+
+ul {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-base);
+}
+
+.text-block {
+  display: flex;
+  gap: var(--size-medium);
+  flex-direction: column;
+  height: 100%;
+}
+
+.grecaptcha-badge {
+  z-index: 50;
+}

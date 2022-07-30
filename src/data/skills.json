@@ -1,0 +1,4 @@
+{
+  "primary": ["HTML", "CSS/Sass", "Accessiblity", "Javascript", "React", "Sveltekit", "Bootstrap"],
+  "secondary": ["PHP", "MySQL", "WordPress", "NodeJS", "SEO"]
+}
