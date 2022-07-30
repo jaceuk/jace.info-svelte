@@ -80,7 +80,7 @@
       <div class="overview">
         <div class="screenshot-container">
           <button class="screenshot" on:click={handleToggleModal} aria-label={`View screenshot for ${title}`}>
-            <img src={`../src/images/${slug}-screenshot.jpg`} alt="" />
+            <img src={`/src/images/${slug}-screenshot.jpg`} alt="" />
           </button>
 
           <div class="links">
